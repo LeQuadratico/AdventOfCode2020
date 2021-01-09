@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Day_4_1
+namespace Day_04_1
 {
     class Program
     {

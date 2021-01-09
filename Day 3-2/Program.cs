@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Day_3_2
+namespace Day_03_2
 {
     class Program
     {
