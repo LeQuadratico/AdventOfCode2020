@@ -71,6 +71,9 @@ namespace Day_18_2
                         break;
                 }
 
+                if (sum + (ulong)numberAtDepth[0].value > ulong.MaxValue)
+                    Console.WriteLine("TOO BIG");
+
                 sum += (ulong)numberAtDepth[0].value;
 
                 //Console.WriteLine(numberAtDepth[0].value);
@@ -139,7 +142,10 @@ namespace Day_18_2
 
                             if (addOperator && lastNumber != -1)
                             {
-                                s = s.Replace((lastNumber + " + " + number), (lastNumber + number).ToString());
+                                string oldText = (lastNumber + " + " + number);
+                                string newText = (lastNumber + number).ToString();
+                                int pos = s.IndexOf(oldText);
+                                s = s.Substring(0, pos) + newText + s.Substring(pos + oldText.Length);
                                 pointer = 0;
                                 lastNumber = -1;
                                 addOperator = false;
@@ -159,7 +165,10 @@ namespace Day_18_2
 
                     if (addOperator && lastNumber != -1)
                     {
-                        s = s.Replace((lastNumber + " + " + number), (lastNumber + number).ToString());
+                        string oldText = (lastNumber + " + " + number);
+                        string newText = (lastNumber + number).ToString();
+                        int pos = s.IndexOf(oldText);
+                        s = s.Substring(0, pos) + newText + s.Substring(pos + oldText.Length);
                         pointer = 0;
                         lastNumber = -1;
                         addOperator = false;
@@ -197,7 +206,10 @@ namespace Day_18_2
 
                             if (!addOperator && lastNumber != -1)
                             {
-                                s = s.Replace((lastNumber + " * " + number), (lastNumber * number).ToString());
+                                string oldText = (lastNumber + " * " + number);
+                                string newText = (lastNumber * number).ToString();
+                                int pos = s.IndexOf(oldText);
+                                s = s.Substring(0, pos) + newText + s.Substring(pos + oldText.Length);
                                 lastNumber = -1;
                                 pointer = 0;
                                 addOperator = true;
@@ -217,7 +229,10 @@ namespace Day_18_2
 
                     if (!addOperator && lastNumber != -1)
                     {
-                        s = s.Replace((lastNumber + " * " + number), (lastNumber * number).ToString());
+                        string oldText = (lastNumber + " * " + number);
+                        string newText = (lastNumber * number).ToString();
+                        int pos = s.IndexOf(oldText);
+                        s = s.Substring(0, pos) + newText + s.Substring(pos + oldText.Length);
                         lastNumber = -1;
                         pointer = 0;
                         addOperator = true;
@@ -233,13 +248,13 @@ namespace Day_18_2
                 }
 
                 if (parent != null)
-                    parent.CorrentPart(startString, long.Parse(s));
+                    parent.CorrectPart(startString, long.Parse(s));
                 else
                     value = long.Parse(s);
 
             }
 
-            public void CorrentPart(string s, long result)
+            public void CorrectPart(string s, long result)
             {
                 if (startString == null)
                     startString = this.s;
